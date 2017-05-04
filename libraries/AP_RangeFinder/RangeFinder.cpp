@@ -25,6 +25,7 @@
 #include "AP_RangeFinder_Bebop.h"
 #include "AP_RangeFinder_MAVLink.h"
 #include "AP_RangeFinder_LeddarOne.h"
+#include "AP_RangeFinder_LTCL45.h"
 
 extern const AP_HAL::HAL &hal;
 
@@ -570,6 +571,9 @@ void RangeFinder::detect_instance(uint8_t instance)
             return;
         }
     }
+	if (type == RangeFinder_TYPE_LTCL45) {
+		_add_backend(AP_RangeFinder_LTC45::detect(*this, instance, state[instance]));
+	}
 }
 
 // query status
